@@ -15,11 +15,11 @@ Points to remember during development,
 4) Best way to implement a screen with multiple widget is use a Stack
 	read this and implement according to it
 	
-	Scaffold
-		child: Container 
+	
+					Scaffold
+					child: Container 
 					height: MediaQuery.of(context).size.height
 					width : MediaQuery.of(context).size.width
-					
 					child: Stack
 							fit: expanded
 							children:
