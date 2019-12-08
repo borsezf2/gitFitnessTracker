@@ -1,4 +1,7 @@
+
 import 'package:fitness_tracker/Pages/Page%205-%20Forgot%20Password.dart';
+import 'package:fitness_tracker/screens/welcomeScreen/gettingStarted.dart';
+
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:fitness_tracker/scopedModel/mainModel.dart';
@@ -13,11 +16,13 @@ class MyApp extends StatelessWidget {
     return ScopedModel<mainModel>(
       model: mainModel(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Fitness Tracker',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Roboto'
         ),
-        home: MyHomePage(),
+        home: GettingStarted(),
       ),
     );
   }
