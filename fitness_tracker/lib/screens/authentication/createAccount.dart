@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class SignInEmail extends StatefulWidget {
+class CreateAccount extends StatefulWidget {
   @override
-  _SignInEmailState createState() => _SignInEmailState();
+  _CreateAccountState createState() => _CreateAccountState();
 }
 
 TextEditingController emailController = new TextEditingController();
 TextEditingController passController = new TextEditingController();
+TextEditingController nameController = new TextEditingController();
 
-class _SignInEmailState extends State<SignInEmail> {
-  final logo = Hero(
-    tag: 'logo',
-    child: Image(
-      width: 100,
-      height: 100,
-      image: NetworkImage(
-          'https://gstatic.com/images/branding/product/1x/gfit_512dp.png'),
-    ),
-  );
+class _CreateAccountState extends State<CreateAccount> {
+  final nameField = TextFormField(
+      autofocus: true,
+      controller: nameController,
+      decoration: InputDecoration(
+        hintText: 'Name',
+        focusColor: Colors.grey,
+        fillColor: Colors.grey,
+      ));
 
   final emailIdField = TextFormField(
     keyboardType: TextInputType.emailAddress,
@@ -39,20 +39,16 @@ class _SignInEmailState extends State<SignInEmail> {
     ),
   );
 
-  final forgotLabel = FlatButton(
-    child: Text('Forgot Password',
-        style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline)),
-    onPressed: () {},
+  final termsAndCondition = Text(
+    'By Signing up you agree \n to all of our Terms & Conditions',
+    maxLines: 2,
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('SignIn with Email',
+          title: Text('Create Account',
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           backgroundColor: Colors.transparent,
@@ -65,30 +61,63 @@ class _SignInEmailState extends State<SignInEmail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            logo,
-            SizedBox(
-              height: 10.0,
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 2,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[200],
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      size: 120,
+                    ),
+                  ),
+                  Positioned(
+                    child: Text('Tap to add photo'),
+                    bottom: 15.0,
+                    right: 125.0,
+
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: nameField,
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: emailIdField,
             ),
             SizedBox(
-              height: 10.0,
+              height: 5.0,
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: passwordField,
             ),
-            loginButton(context),
-            forgotLabel
+            SizedBox(
+              height: 5.0,
+            ),
+            Center(
+              child: termsAndCondition,
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            createAccount(context),
           ],
         ),
       ),
     );
   }
 
-  Widget loginButton(BuildContext context) {
+  Widget createAccount(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.0),
       child: InkWell(
@@ -102,7 +131,7 @@ class _SignInEmailState extends State<SignInEmail> {
               borderRadius: BorderRadius.all(Radius.circular(40.0))),
           child: Center(
             child: Text(
-              'LOGIN',
+              'Create Account',
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
